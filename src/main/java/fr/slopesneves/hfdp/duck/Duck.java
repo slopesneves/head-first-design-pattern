@@ -5,6 +5,7 @@ import fr.slopesneves.hfdp.duck.behavior.quack.QuackBehavior;
 
 public abstract class Duck {
     FlyBehavior flyBehavior;
+
     QuackBehavior quackBehavior;
 
     public Duck () {}
@@ -21,5 +22,13 @@ public abstract class Duck {
 
     public void swim() {
         System.out.println("All ducks float, even decoys");
+    }
+
+    public void setFlyBehavior(FlyBehavior behavior) {
+        this.flyBehavior = behavior;
+    }
+
+    public void setQuackBehavior(QuackBehavior behavior) {
+        this.quackBehavior = behavior;
     }
 }
