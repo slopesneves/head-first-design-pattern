@@ -1,26 +1,27 @@
 package fr.slopesneves.hfdp.weatherstation;
 
 import java.util.LinkedHashSet;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
-public class WeatherData implements Publisher {
+public class WeatherData extends Observable {
     private final Set<Observer> observers = new LinkedHashSet<>();
     private float temperature;
     private float humidity;
     private float pressure;
-    @Override
+
     public void register(Observer observer) {
-        observers.add(observer);
+        this.addObserver(observer);
     }
 
-    @Override
     public void remove(Observer observer) {
-        observers.remove(observer);
+        this.deleteObserver(observer);
     }
 
-    @Override
     public void publish() {
-        observers.forEach(Observer::update);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public float getTemperature() {

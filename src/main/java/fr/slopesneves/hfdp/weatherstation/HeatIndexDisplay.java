@@ -13,7 +13,6 @@ public class HeatIndexDisplay implements Display {
         System.out.println("Heat index is " + computeHeatIndex(weather.getTemperature(), weather.getHumidity()));
     }
 
-    @Override
     public void update() {
         display();
     }

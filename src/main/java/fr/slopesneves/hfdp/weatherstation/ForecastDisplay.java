@@ -21,7 +21,6 @@ public class ForecastDisplay implements Display {
         }
     }
 
-    @Override
     public void update() {
         pressure.last = pressure.current;
         pressure.current = weather.getPressure();
