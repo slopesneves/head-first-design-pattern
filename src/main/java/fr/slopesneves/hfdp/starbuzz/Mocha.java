@@ -1,8 +1,6 @@
 package fr.slopesneves.hfdp.starbuzz;
 
 public class Mocha extends CondimentDecorator {
-    Beverage beverage;
-
     public Mocha(Beverage beverage) {
         this.beverage = beverage;
     }

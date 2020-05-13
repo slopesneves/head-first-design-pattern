@@ -1,8 +1,6 @@
 package fr.slopesneves.hfdp.starbuzz;
 
 public class Soy extends CondimentDecorator {
-    Beverage beverage;
-
     public Soy(Beverage beverage) {
         this.beverage = beverage;
     }
@@ -14,6 +12,14 @@ public class Soy extends CondimentDecorator {
 
     @Override
     public double cost() {
-        return beverage.cost() + 0.15;
+        final double cost;
+        if (Size.TALL.equals(getSize())) {
+            cost = 0.10;
+        }else if (Size.GRANDE.equals(getSize())) {
+            cost = 0.15;
+        }else {
+            cost = 0.20;
+        }
+        return beverage.cost() + cost;
     }
 }
