@@ -1,35 +1,25 @@
 package fr.slopesneves.hfdp.pizza;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class Pizza {
     private final String name;
-    private final String dough;
-    private final String sauce;
-    private final List<String> toppings;
+    private final Dough dough;
+    private final Sauce sauce;
+    private final List<Veggies> veggies;
 
     public String getName() {
         return name;
     }
 
-    protected Pizza(String name, String dough, String sauce, List<String> toppings) {
+    protected Pizza(String name, Dough dough, Sauce sauce, List<Veggies> veggies) {
         this.name = name;
         this.dough = dough;
         this.sauce = sauce;
-        this.toppings = toppings;
+        this.veggies = veggies;
     }
 
-    public void prepare() {
-        System.out.println("Preparing " + name);
-        System.out.println("Tossing " + dough + " dough");
-        System.out.println("Adding " + sauce + " sauce");
-        System.out.println("Adding " + toppings.size() + " topping(s) : " + toppingsSeparateByComma());
-    }
-
-    private String toppingsSeparateByComma() {
-        return String.join(",", toppings);
-    }
+    public abstract void prepare();
 
     public void bake() {
         System.out.println("Bake for 25 minutes at 350");

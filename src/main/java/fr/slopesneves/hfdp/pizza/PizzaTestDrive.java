@@ -1,5 +1,8 @@
 package fr.slopesneves.hfdp.pizza;
 
+import fr.slopesneves.hfdp.pizza.chicago.ChicagoPizzaStore;
+import fr.slopesneves.hfdp.pizza.ny.NYPizzaStore;
+
 public class PizzaTestDrive {
     public static void main(String[] args) {
         PizzaStore nyStore = new NYPizzaStore();
