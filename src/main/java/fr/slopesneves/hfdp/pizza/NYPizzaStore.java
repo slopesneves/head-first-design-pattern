@@ -1,8 +1,8 @@
 package fr.slopesneves.hfdp.pizza;
 
-public class ChicagoPizzaStore extends PizzaStore {
+public class NYPizzaStore extends PizzaStore {
     @Override
     public Pizza createPizza(String type) {
-        return new ChicagoStyleCheesePizza();
+        return new NYStyleCheesePizza();
     }
 }
