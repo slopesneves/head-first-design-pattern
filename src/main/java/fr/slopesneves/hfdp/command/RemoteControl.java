@@ -8,7 +8,6 @@ public class RemoteControl {
     private static final int NUMBER_OF_BUTTONS = RemoteControlButtonIndex.values().length;
     private final List<Command> onButtons = new ArrayList<>(NUMBER_OF_BUTTONS);
     private final List<Command> offButtons = new ArrayList<>(NUMBER_OF_BUTTONS);
-    private Command lastCommand = new NoCommand();
 
     public RemoteControl() {
         initializeEachButtonsWithoutCommand();
@@ -27,17 +26,11 @@ public class RemoteControl {
     public void onButtonPushed(RemoteControlButtonIndex index) {
         Command command = this.onButtons.get(index.value - 1);
         command.execute();
-        this.lastCommand = command;
     }
 
     public void offButtonPushed(RemoteControlButtonIndex index) {
         Command command = this.offButtons.get(index.value - 1);
         command.execute();
-        this.lastCommand = command;
-    }
-
-    public void undo() {
-        lastCommand.undo();
     }
 
     @Override
