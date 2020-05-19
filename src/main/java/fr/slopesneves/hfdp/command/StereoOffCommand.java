@@ -1,14 +1,20 @@
 package fr.slopesneves.hfdp.command;
 
-public class NoCommand implements Command {
+public class StereoOffCommand implements Command {
+    Stereo stereo;
+
+    public StereoOffCommand(Stereo stereo) {
+        this.stereo = stereo;
+    }
+
     @Override
     public void execute() {
-        System.out.println("any command configured");
+        this.stereo.off();
     }
 
     @Override
     public void undo() {
-        execute();
+        new StereoOnCommand(stereo).execute();
     }
 
     @Override

@@ -1,14 +1,20 @@
 package fr.slopesneves.hfdp.command;
 
-public class NoCommand implements Command {
+public class LightOffCommand implements Command {
+    Light light;
+
+    public LightOffCommand(Light light) {
+        this.light = light;
+    }
+
     @Override
     public void execute() {
-        System.out.println("any command configured");
+        this.light.off();
     }
 
     @Override
     public void undo() {
-        execute();
+        this.light.on();
     }
 
     @Override

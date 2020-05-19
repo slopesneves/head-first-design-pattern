@@ -8,32 +8,44 @@ public class RemoteLoader {
     public static void main(String[] args) {
         RemoteControl remote = new RemoteControl();
         Light light = new Light();
+        LightOnCommand lightOnCommand = new LightOnCommand(light);
+        LightOffCommand lightOffCommand = new LightOffCommand(light);
 
         Stereo stereo = new Stereo();
-        remote.setCommand(ONE, light::on, light::off);
-        remote.setCommand(TWO, stereo::on, stereo::off);
+        StereoOnCommand stereoOnCommand = new StereoOnCommand(stereo);
+        StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
+        remote.setCommand(ONE, lightOnCommand, lightOffCommand);
+        remote.setCommand(TWO, stereoOnCommand, stereoOffCommand);
 
         remote.onButtonPushed(ONE);
         remote.offButtonPushed(ONE);
         remote.onButtonPushed(TWO);
         remote.offButtonPushed(TWO);
+        remote.undo();
 
         CeilingFan fan = new CeilingFan();
-        remote.setCommand(THREE, fan::high, fan::off);
-        remote.setCommand(FOUR, fan::medium, fan::off);
-        remote.setCommand(FIVE, fan::low, fan::off);
+        CeilingFanOffCommand fanOffCommand = new CeilingFanOffCommand(fan);
+        CeilingFanHighCommand fanHighCommand = new CeilingFanHighCommand(fan);
+        remote.setCommand(THREE, fanHighCommand, fanOffCommand);
+        remote.setCommand(FOUR, new CeilingFanMediumCommand(fan), fanOffCommand);
+        remote.setCommand(FIVE, new CeilingFanLowCommand(fan), fanOffCommand);
 
         remote.onButtonPushed(THREE);
         remote.onButtonPushed(FOUR);
+        remote.undo();
+        remote.onButtonPushed(FIVE);
+        remote.undo();
         remote.onButtonPushed(FIVE);
         remote.onButtonPushed(THREE);
+        remote.undo();
 
 
         System.out.println("========= READY TO PARTY MODE ? ============");
-        Command partyOnCommand = () -> {light.on(); stereo.on(); fan.high();};
-        Command partyOffCommand = () -> {light.off(); stereo.off(); fan.off();};
+        MacroCommand partyOnCommand = new MacroCommand(Arrays.asList(lightOnCommand, stereoOnCommand, fanHighCommand));
+        MacroCommand partyOffCommand = new MacroCommand(Arrays.asList(lightOffCommand, stereoOffCommand, fanOffCommand));
         remote.setCommand(SIX, partyOnCommand, partyOffCommand);
         remote.onButtonPushed(SIX);
+        remote.undo();
         remote.offButtonPushed(SIX);
 
         System.out.println(remote);
