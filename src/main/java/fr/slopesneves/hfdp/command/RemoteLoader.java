@@ -21,5 +21,6 @@ public class RemoteLoader {
         remote.offButtonPushed(ONE);
         remote.onButtonPushed(TWO);
         remote.offButtonPushed(TWO);
+        remote.undo();
     }
 }

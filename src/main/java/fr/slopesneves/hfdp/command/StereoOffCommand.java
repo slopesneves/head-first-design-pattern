@@ -13,6 +13,11 @@ public class StereoOffCommand implements Command {
     }
 
     @Override
+    public void undo() {
+        new StereoOnCommand(stereo).execute();
+    }
+
+    @Override
     public String toString() {
         return this.getClass().getSimpleName();
     }

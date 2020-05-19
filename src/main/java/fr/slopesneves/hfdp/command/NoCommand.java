@@ -7,6 +7,11 @@ public class NoCommand implements Command {
     }
 
     @Override
+    public void undo() {
+        execute();
+    }
+
+    @Override
     public String toString() {
         return this.getClass().getSimpleName();
     }
