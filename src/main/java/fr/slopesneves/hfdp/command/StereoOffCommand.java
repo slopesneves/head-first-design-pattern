@@ -1,15 +1,15 @@
 package fr.slopesneves.hfdp.command;
 
-public class LightOnCommand implements Command {
-    Light light;
+public class StereoOffCommand implements Command {
+    Stereo stereo;
 
-    public LightOnCommand(Light light) {
-        this.light = light;
+    public StereoOffCommand(Stereo stereo) {
+        this.stereo = stereo;
     }
 
     @Override
     public void execute() {
-        this.light.on();
+        this.stereo.off();
     }
 
     @Override
